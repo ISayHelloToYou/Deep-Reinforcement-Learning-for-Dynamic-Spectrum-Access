@@ -15,19 +15,19 @@ class QNetwork:
             ##########################################
          
             self.lstm = tf.contrib.rnn.BasicLSTMCell(hidden_size)
-            
-            self.lstm_out, self.state = tf.nn.dynamic_rnn(self.lstm,self.inputs_,dtype=tf.float32)
-            
+
+            self.lstm_out, self.state = tf.nn.dynamic_rnn(self.lstm,self.inputs_,dtype=tf.float32)#lstm_out=(none,step_size,hidden_size)
+
             self.reduced_out = self.lstm_out[:,-1,:]
             self.reduced_out = tf.reshape(self.reduced_out,shape=[-1,hidden_size])
 
             #########################################
             
-            #self.w1 = tf.Variable(tf.random_uniform([state_size,hidden_size]))
-            #self.b1 = tf.Variable(tf.constant(0.1,shape=[hidden_size]))
-            #self.h1 = tf.matmul(self.inputs_,self.w1) + self.b1
-            #self.h1 = tf.nn.relu(self.h1)
-            #self.h1 = tf.contrib.layers.layer_norm(self.h1)
+            # self.w1 = tf.Variable(tf.random_uniform([state_size,hidden_size]))
+            # self.b1 = tf.Variable(tf.constant(0.1,shape=[hidden_size]))
+            # self.h1 = tf.matmul(self.inputs_,self.w1) + self.b1
+            # self.h1 = tf.nn.relu(self.h1)
+            # self.h1 = tf.contrib.layers.layer_norm(self.h1)
             #'''
 
             self.w2 = tf.Variable(tf.random_uniform([hidden_size,hidden_size]))
