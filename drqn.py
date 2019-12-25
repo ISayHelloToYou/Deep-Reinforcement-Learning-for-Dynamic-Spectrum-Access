@@ -52,7 +52,7 @@ class QNetwork:
             self.output = tf.contrib.layers.fully_connected(self.fc2, action_size,activation_fn=None)
             
             '''
-            self.Q = tf.reduce_sum(tf.multiply(self.output, one_hot_actions), axis=1)
+            self.Q = tf.reduce_sum(tf.multiply(self.output, one_hot_actions), axis=1)# shape [NUM_USERS*batch_size, ]
             
             self.loss = tf.reduce_mean(tf.square(self.targetQs_ - self.Q))
             self.opt = tf.train.AdamOptimizer(learning_rate).minimize(self.loss)
